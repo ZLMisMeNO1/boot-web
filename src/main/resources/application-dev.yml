@@ -1,0 +1,49 @@
+
+debug: false
+server:
+  port: 8080
+  servlet:
+    context-path: /boot
+
+logging:
+  path: ./logs
+  level:
+    cn.i7baozh.boot: debug
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} %msg%n"
+
+# 使用docker MySQL镜像，sqlyog连接时会报错2058
+# 进入docker中
+# docker exec -it 容器id bash
+# mysql -u root
+# 执行  ALTER user 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
+
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://192.168.175.134:3306/BootWeb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+      # https://www.cnblogs.com/wuyun-blog/p/5679073.html
+    initialSize: 5
+    maxActive: 20
+    minIdle: 5
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: select 1 from dual
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall,log4j
+    initialization-mode: always
+    schema:
+      - classpath:/db/1.0.0/03_boot_web_dml_insert_dept.sql
+      - classpath:/db/1.0.0/02_boot_web_ddl_create_dept.sql
+
+mybatis:
+  config-location: classpath:/mybatis/config/config.xml
+  mapper-locations: classpath:/mybatis/mapper/*.xml
