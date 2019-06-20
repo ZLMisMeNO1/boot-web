@@ -13,10 +13,11 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} %msg%n"
 
+# docker run --name mysql01 -d -p 3306:3306  -e MYSQL_ROOT_PASSWORD=123456 mysql:tag
 # 使用docker MySQL镜像，sqlyog连接时会报错2058
 # 进入docker中
 # docker exec -it 容器id bash
-# mysql -u root
+# mysql -u root -p
 # 执行  ALTER user 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
 
 spring:
