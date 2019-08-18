@@ -24,7 +24,7 @@ spring:
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql://192.168.175.134:3306/BootWeb
+    url: jdbc:mysql://192.168.175.128:3306/BootWeb
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
       # https://www.cnblogs.com/wuyun-blog/p/5679073.html
@@ -48,3 +48,12 @@ spring:
 mybatis:
   config-location: classpath:/mybatis/config/config.xml
   mapper-locations: classpath:/mybatis/mapper/*.xml
+
+redis:
+  connection: localhost:6379
+
+#  zk连接信息
+zk:
+  connection: localhost:2181
+  root: web
+  projectConfigDir: /configuration

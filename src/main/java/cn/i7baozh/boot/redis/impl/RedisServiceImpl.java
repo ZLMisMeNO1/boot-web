@@ -1,11 +1,13 @@
-package cn.i7baozh.boot.redis;
+package cn.i7baozh.boot.redis.impl;
 
+import cn.i7baozh.boot.redis.RedisService;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.params.SetParams;
-import javax.annotation.PostConstruct;
+
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -20,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class RedisServiceImpl implements RedisService {
 
+    @Autowired
     private Jedis jedis;
 
     /**
@@ -31,13 +34,6 @@ public class RedisServiceImpl implements RedisService {
      * 释放锁成功返回
      */
     private static final Long RELEASE_LOCK_SUCCESS = 1L;
-
-    @PostConstruct
-    public void init() {
-        //简易装置
-        jedis = new Jedis("localhost", 6379);
-        log.info("redis init end ..");
-    }
 
     @Override
     public String acquireLockWithTimeout(String lockName, Integer acquireTime, Integer timeout) {
