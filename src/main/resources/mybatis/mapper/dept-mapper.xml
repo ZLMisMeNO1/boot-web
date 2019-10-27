@@ -6,4 +6,9 @@
     <select id="findById" resultType="cn.i7baozh.boot.bean.DeptBean">
         select * from dept where id = #{id}
     </select>
+
+    <select id="listDepts" resultType="cn.i7baozh.boot.bean.DeptBean">
+        select * from dept
+    </select>
+
 </mapper>

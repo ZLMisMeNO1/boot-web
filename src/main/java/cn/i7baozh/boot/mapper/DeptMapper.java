@@ -1,7 +1,10 @@
 package cn.i7baozh.boot.mapper;
 
 import cn.i7baozh.boot.bean.DeptBean;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * @Title:
@@ -18,4 +21,6 @@ public interface DeptMapper {
      * @return
      */
     DeptBean findById(Long id);
+
+    List<DeptBean> listDepts();
 }

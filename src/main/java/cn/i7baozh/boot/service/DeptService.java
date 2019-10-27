@@ -1,6 +1,7 @@
 package cn.i7baozh.boot.service;
 
 import cn.i7baozh.boot.bean.DeptBean;
+import com.github.pagehelper.PageInfo;
 
 /**
  * @Title:
@@ -17,4 +18,6 @@ public interface DeptService {
      * @return
      */
     DeptBean getById(Long id);
+
+    PageInfo<DeptBean> listDeptByPage(Integer pageNo, Integer pageSize);
 }
